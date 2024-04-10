@@ -1,0 +1,9 @@
+tagURLusa:
+  type: string
+  default: "https://3dprintingusa.com/"
+tagURLca:
+  type: string
+  default: "https://3dprintingcanada.com/"
+tweenMaxURL:
+  type: string
+  default: "https://cdn.jsdelivr.net/npm/greensock@1.20.2/src/TweenMax.min.js"
