@@ -1,14 +1,15 @@
 import Component from "@ember/component";
-import { concat, fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
+import { service } from "@ember/service";
 import loadScript from "discourse/lib/load-script";
 import i18n from "discourse-common/helpers/i18n";
-import discourseComputed from "discourse-common/utils/decorators";
+// import discourseComputed from "discourse-common/utils/decorators";
 
 export default class Banner extends Component {
+  @service currentUser;
   tl = null;
 
   @action
@@ -139,7 +140,7 @@ export default class Banner extends Component {
   }
 
   @action
-  gotoURL(currentUser) {
+  gotoURL() {
     const url =
       this.currentUser.geo_location.country_code === "CA"
         ? settings.tagURLca
@@ -151,9 +152,10 @@ export default class Banner extends Component {
   <template>
     <div
       class="space-banner"
+      role="button"
       {{didInsert this.setup}}
       {{willDestroy this.teardown}}
-      {{on "click" (fn this.gotoURL this.currentUser)}}
+      {{on "click" this.gotoURL}}
     >
       <div class="sp-pos" id="sp-banner">
         <div class="sp-pos sp-blue" id="sp-bgblue"></div>
@@ -191,7 +193,6 @@ export default class Banner extends Component {
           <span class="sp-dark">{{this.sloganTwo}}</span>
         </div>
 
-        {{log "dude." this.logoLocation}}
         <img src={{this.logoLocation}} alt="" class="sp-pos" id="sp-logo" />
 
         <div class="sp-pos" id="sp-frame"></div>

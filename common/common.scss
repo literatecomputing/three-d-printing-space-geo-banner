@@ -1,12 +1,13 @@
 .space-banner {
   position: relative;
-  width: 728px;
+  width: calc(var(--topic-body-width) + var(--topic-body-width-padding) * 2);
+  // width: 728px;
   height: 90px;
   margin: auto;
 
   .sp-pos {
     position: absolute;
-    width: 728px;
+    width: calc(var(--topic-body-width) + var(--topic-body-width-padding) * 2);
     height: 90px;
     left: 0;
     top: 0;
