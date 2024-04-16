@@ -2,14 +2,14 @@ en:
   theme_metadata:
     description: ""
   slide:
-    one: "3D Printers"
-    two: "3D Filaments"
-    three: "3D Resins"
+    line_one: "3D Printers"
+    line_two: "3D Filaments"
+    line_three: "3D Resins"
   footer: "Your 3D Printing Supplier!"
   button: "Shop now"
   slogan_us:
-    one: "USA Premier"
-    two: "3D Printing Store!"
+    line_one: "USA Premier"
+    line_two: "3D Printing Store!"
   slogan_ca:
-    one: "Canada's Premier"
-    two: "3D Printing Store!"
+    line_one: "Canada's Premier"
+    line_two: "3D Printing Store!"

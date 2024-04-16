@@ -108,16 +108,16 @@ export default class Banner extends Component {
   get sloganOne() {
     const slogan =
       this.currentUser.geo_location.country_code === "CA"
-        ? i18n(themePrefix("slogan_ca.one"))
-        : i18n(themePrefix("slogan_us.one"));
+        ? i18n(themePrefix("slogan_ca.line_one"))
+        : i18n(themePrefix("slogan_us.line_one"));
 
     return slogan;
   }
   get sloganTwo() {
     const slogan =
       this.currentUser.geo_location.country_code === "CA"
-        ? i18n(themePrefix("slogan_ca.two"))
-        : i18n(themePrefix("slogan_us.two"));
+        ? i18n(themePrefix("slogan_ca.line_two"))
+        : i18n(themePrefix("slogan_us.line_two"));
 
     return slogan;
   }
@@ -162,21 +162,21 @@ export default class Banner extends Component {
 
         <div class="sp-pos sp-slide" id="sp-slide2">
           <div class="sp-pos sp-shead" id="sp-shead2">{{i18n
-              (themePrefix "slide.two")
+              (themePrefix "slide.line_two")
             }}</div>
           <div class="sp-pos sp-simg" id="sp-simg2"></div>
         </div>
 
         <div class="sp-pos sp-slide" id="sp-slide1">
           <div class="sp-pos sp-shead" id="sp-shead1">{{i18n
-              (themePrefix "slide.one")
+              (themePrefix "slide.line_one")
             }}</div>
           <div class="sp-pos sp-simg" id="sp-simg1"></div>
         </div>
 
         <div class="sp-pos sp-slide" id="sp-slide3">
           <div class="sp-pos sp-shead" id="sp-shead3">{{i18n
-              (themePrefix "slide.three")
+              (themePrefix "slide.line_three")
             }}</div>
           <div class="sp-pos sp-simg" id="sp-simg3"></div>
         </div>
