@@ -11,11 +11,9 @@ export default class Banner extends Component {
   static shouldRender(args) {
     return args?.post?.post_number === 1;
   }
-@service currentUser;
+  @service currentUser;
 
   timeline = null;
-
-
 
   get isCanadian() {
     return this.currentUser?.geo_location?.country_code === "CA";
