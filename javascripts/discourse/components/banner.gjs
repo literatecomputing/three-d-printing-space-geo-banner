@@ -1,32 +1,70 @@
-import Component from "@ember/component";
-import { on } from "@ember/modifier";
+import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import { service } from "@ember/service";
+import { on } from "@ember/modifier";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
-import { service } from "@ember/service";
 import loadScript from "discourse/lib/load-script";
 import i18n from "discourse-common/helpers/i18n";
-// import discourseComputed from "discourse-common/utils/decorators";
 
 export default class Banner extends Component {
   @service currentUser;
-  tl = null;
+
+  timeline = null;
+
+  static shouldRender(args) {
+    return args?.post?.post_number === 1;
+  }
+
+  get isCanadian() {
+    return this.currentUser?.geo_location?.country_code === "CA";
+  }
+
+  get logoLocation() {
+    const uploads = settings.theme_uploads;
+    return this.isCanadian ? uploads.logo_ca : uploads.logo;
+  }
+
+  get sloganOne() {
+    return this.isCanadian
+      ? i18n(themePrefix("slogan_ca.line_one"))
+      : i18n(themePrefix("slogan_us.line_one"));
+  }
+
+  get sloganTwo() {
+    return this.isCanadian
+      ? i18n(themePrefix("slogan_ca.line_two"))
+      : i18n(themePrefix("slogan_us.line_two"));
+  }
+
+  get destinationUrl() {
+    return this.isCanadian ? settings.tagURLca : settings.tagURLusa;
+  }
+
+  async ensureAnimationLibrary() {
+    if (!window.TimelineMax) {
+      await loadScript(settings.tweenMaxURL);
+    }
+  }
 
   @action
   async setup() {
     try {
-      await loadScript(settings.tweenMaxURL);
+      await this.ensureAnimationLibrary();
 
       const { TimelineMax, Power3, Back } = window;
+      if (!TimelineMax) {
+        return;
+      }
 
-      this.tl = new TimelineMax({
+      this.timeline = new TimelineMax({
         repeat: 2,
         repeatDelay: 0,
         paused: true,
         onComplete: this.stopFrame.bind(this),
       });
 
-      this.tl
+      this.timeline
         .from(
           ["#sp-footer", "#sp-bgblue"],
           0.5,
@@ -93,60 +131,29 @@ export default class Banner extends Component {
         );
 
       this.startFrame();
-    } catch (error) {}
+    } catch {
+      // Animation is optional; swallow failures to avoid breaking rendering
+    }
   }
 
-  get logoLocation() {
-    const logo =
-      this.currentUser.geo_location.country_code === "CA"
-        ? settings.theme_uploads.logo_ca
-        : settings.theme_uploads.logo;
-
-    return logo;
-  }
-
-  get sloganOne() {
-    const slogan =
-      this.currentUser.geo_location.country_code === "CA"
-        ? i18n(themePrefix("slogan_ca.line_one"))
-        : i18n(themePrefix("slogan_us.line_one"));
-
-    return slogan;
-  }
-  get sloganTwo() {
-    const slogan =
-      this.currentUser.geo_location.country_code === "CA"
-        ? i18n(themePrefix("slogan_ca.line_two"))
-        : i18n(themePrefix("slogan_us.line_two"));
-
-    return slogan;
-  }
-
+  @action
   teardown() {
     this.stopFrame();
+    this.timeline = null;
   }
 
   startFrame() {
-    this.tl?.play();
+    this.timeline?.play();
   }
 
   stopFrame() {
-    this.tl?.seek("stopFrame");
-    this.tl?.pause();
-  }
-
-  get urlDestination() {
-    return "https://bananas.com";
+    this.timeline?.seek("stopFrame");
+    this.timeline?.pause();
   }
 
   @action
   gotoURL() {
-    const url =
-      this.currentUser.geo_location.country_code === "CA"
-        ? settings.tagURLca
-        : settings.tagURLusa;
-
-    window.open(url, "_blank");
+    window.open(this.destinationUrl, "_blank");
   }
 
   <template>
