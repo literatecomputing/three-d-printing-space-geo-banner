@@ -1,20 +1,21 @@
 import Component from "@glimmer/component";
-import { action } from "@ember/object";
-import { service } from "@ember/service";
 import { on } from "@ember/modifier";
+import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
+import { service } from "@ember/service";
 import loadScript from "discourse/lib/load-script";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class Banner extends Component {
-  @service currentUser;
-
-  timeline = null;
-
   static shouldRender(args) {
     return args?.post?.post_number === 1;
   }
+@service currentUser;
+
+  timeline = null;
+
+
 
   get isCanadian() {
     return this.currentUser?.geo_location?.country_code === "CA";
