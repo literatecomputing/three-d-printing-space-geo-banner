@@ -4,8 +4,10 @@
 
   // width: 728px;
   height: 90px;
-  // align with the post body: same width, offset past the avatar gutter
-  margin: 20px 0 0 var(--topic-avatar-width);
+  // center under the post card. Site's material theme pads .topic-avatar
+  // +10px and .topic-body +20px per side, so the card is 40px wider than
+  // this banner and starts 10px past the avatar column: 10 + 40/2 = 30.
+  margin: 20px 0 0 calc(var(--topic-avatar-width) + 30px);
 
   .sp-pos {
     position: absolute;
