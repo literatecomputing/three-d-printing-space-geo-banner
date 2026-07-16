@@ -4,7 +4,8 @@
 
   // width: 728px;
   height: 90px;
-  margin: auto;
+  // align with the post body: same width, offset past the avatar gutter
+  margin: 20px 0 0 var(--topic-avatar-width);
 
   .sp-pos {
     position: absolute;
