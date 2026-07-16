@@ -1,6 +1,7 @@
 .space-banner {
   position: relative;
   width: calc(var(--topic-body-width) + var(--topic-body-width-padding) * 2);
+
   // width: 728px;
   height: 90px;
   margin: auto;
@@ -16,11 +17,11 @@
   #sp-banner {
     cursor: pointer;
     overflow: hidden;
-    background: rgba(255, 255, 255, 1);
-    font-family: "Poppins", sans-serif;
+    background: rgb(255, 255, 255, 1);
+    font-family: Poppins, sans-serif;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #fff;
     text-align: center;
     text-transform: uppercase;
   }
@@ -38,8 +39,7 @@
   }
 
   #sp-slogan {
-    left: 0px;
-    top: 7px;
+    left: 0;
     width: 150px;
     height: 50px;
     font-size: 16px;
@@ -52,7 +52,7 @@
   }
 
   .sp-dark {
-    color: #000000;
+    color: #000;
   }
 
   #sp-logo {
@@ -67,7 +67,7 @@
     height: 25px;
     left: 200px;
     top: 55px;
-    border: 1px solid #ffffff;
+    border: 1px solid #fff;
     line-height: 25px;
     font-size: 16px;
     will-change: transform, opacity;
@@ -81,7 +81,7 @@
   }
 
   #sp-shipping {
-    left: 0px;
+    left: 0;
     top: 4px;
     width: inherit;
   }

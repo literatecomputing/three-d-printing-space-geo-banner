@@ -5,12 +5,13 @@ import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
 import { service } from "@ember/service";
 import loadScript from "discourse/lib/load-script";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 export default class Banner extends Component {
   static shouldRender(args) {
     return args?.post?.post_number === 1;
   }
+
   @service currentUser;
 
   timeline = null;
