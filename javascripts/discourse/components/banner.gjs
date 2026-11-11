@@ -200,7 +200,7 @@ export default class Banner extends Component {
           <span class="sp-dark">{{this.sloganTwo}}</span>
         </div>
 
-        <img src={{this.logoLocation}} alt="" class="sp-pos" id="sp-logo" />
+        <img alt="" class="sp-pos" id="sp-logo" src={{this.logoLocation}} />
 
         <div class="sp-pos" id="sp-frame"></div>
       </div>
