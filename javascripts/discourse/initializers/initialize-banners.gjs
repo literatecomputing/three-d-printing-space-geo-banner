@@ -1,5 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import Banner from "../components/banner";
+import Banner from "../components/banner.gjs";
 
 const PLUGIN_API_VERSION = "1.44.0";
 
